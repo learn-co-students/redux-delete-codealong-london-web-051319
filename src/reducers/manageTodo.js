@@ -4,7 +4,20 @@ export default function manageTodo(state = {
   switch (action.type) {
     case 'ADD_TODO':
 
-      return { todos: state.todos.concat(action.payload.text) };
+      const todo = {
+        id: Math.random()*10000000000000000,
+        text: action.payload.text
+      }
+
+      return { todos: state.todos.concat(todo) };
+
+    case 'DELETE_TODO':
+      // const idx = state.todos.indexOf(action.payload)
+      // return { todos: state.todos.slice(0,idx).concat(state.todos.slice(idx+1)) };
+
+      // return {todos: state.todos.filter(todo => todo !== action.payload)}
+
+      return {todos: state.todos.filter(todo => todo.id !== action.payload)}
 
     default:
       return state;
